@@ -2,24 +2,32 @@
   --primary-bg-color: rgb(24, 24, 102);
   --primary-color: white;
   --image-bg-color: white;
+  --image-border-width: 8px;
+  --body-padding: 4vw;
+  --header-border-width: 1vw;
+  --header-width: calc(100vw - var(--body-padding) * 2) - var(--header-border-width) * 2;
   --image-size: calc(82vw / 5);
   font-size: 16px;
 }
 
 body {
+  height: 100vh;
   margin: 0;
-  padding: 4vw;
+  padding: var(--body-padding);
+  display: grid;
+  grid-template-rows: calc(6rem + var(--body-padding) * 2) auto 100px;
   background-color: var(--primary-bg-color);
 }
 
 /* Top */
 header {
-  width: 82vw;
+  width: var(--header-width);
   padding: 4vw;
+  flex-grow: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1vw solid turquoise;
+  border: var(--header-border-width) solid turquoise;
   border-radius: 4px;
 }
 
@@ -47,14 +55,45 @@ header {
   font-size: 2.4em;
 }
 
-/* Bottom */
-main {
-  margin-top: 4vw;
+/* Center */
+.circle-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;  
+  justify-content: space-evenly;
 }
 
-img {
+.circle {
   width: var(--image-size);
   height: var(--image-size);
   background-color: var(--image-bg-color);
   border-radius: 50%;
+  border: var(--image-border-width) solid black;
+}
+
+#water {
+  border-color: aqua;
+}
+
+#fire {
+  border-color: red;
+}
+
+#metal {
+  border-color: gray;
+}
+
+#wood {
+  border-color: green;
+}
+
+#earth {
+  border-color: brown;
+}
+
+/* Bottom */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
