@@ -10,6 +10,10 @@
   --image-size: calc(82vw / 5);
   --button-bg-color: dodgerblue;
   --button-color: white;
+  --body-padding-lg: 10%;
+  --header-padding-lg: 1rem;
+  --header-height-lg: calc(6rem + var(--header-border-width) * 2 + var(--header-padding-lg) * 2);
+  --image-size-lg: 70px;
 }
 
 body {
@@ -172,4 +176,33 @@ footer {
   color: var(--button-color);
   border-radius: 24px;
   font-size: 1rem;
+}
+
+/* responsive */
+@media screen and (min-width: 1024px) {
+  body {
+    width: 60%;
+    margin: 0 auto;
+    padding: 0;
+    grid-template-rows: var(--header-height-lg) auto 100px;
+  }
+
+  header {
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+
+  .score {
+    padding: 1rem;
+  }
+
+  .circle {
+    width: var(--image-size-lg);
+    height: var(--image-size-lg);
+  }
+
+  .info {
+    width: 60vw;
+    left: 20%;
+  }
 }
