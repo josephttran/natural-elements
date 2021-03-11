@@ -29,10 +29,10 @@ addElementsClickEvent(imgElements);
 
 function addElementsClickEvent(imgElements) {
   imgElements.forEach(imgElement => {
-    let element = imgElement.className.split(' ')[1];
     imgElement.addEventListener('click', () => {
-      let randElement = getRandomElement();
       const circle = chosen.querySelectorAll('.circle');
+      let element = imgElement.className.split(' ')[1];
+      let randElement = getRandomElement();
 
       circleContainer.style.display = 'none';
       resultContainer.style.display = 'flex';
@@ -40,6 +40,8 @@ function addElementsClickEvent(imgElements) {
       circle[0].setAttribute('class', `circle ${element}`);
       circle[1].setAttribute('src', `/images/${randElement}.svg`);
       circle[1].setAttribute('class', `circle ${randElement}`);
+
+      updateScore(element, randElement);
     });
   });
 }
@@ -48,4 +50,42 @@ function getRandomElement() {
   const elementLength = elements.length;
   const rand = Math.floor(Math.random() * elementLength);
   return elements[rand];
+}
+
+function updateScore(elementUser, elementComputer) {
+  let tempScore = 0;
+
+  switch(elementUser) {
+    case 'water': 
+      if (elementComputer == 'fire') {
+        tempScore += 1;
+      };
+      break;
+    case 'fire':
+      if (elementComputer == 'metal') {
+        tempScore += 1;
+      };
+      break;
+    case 'metal':
+      if (elementComputer == 'wood') {
+        tempScore += 1;
+      };
+      break;
+    case 'wood':
+      if (elementComputer == 'earth') {
+        tempScore += 1;
+      };
+      break;
+    case 'earth':
+      if (elementComputer == 'water') {
+        tempScore += 1;
+      };
+      break;
+    default: 
+      return;
+  }
+
+  const scoreText = score.querySelector('.value').textContent;
+  const newScore = tempScore + parseInt(scoreText);
+  score.querySelector('.value').textContent = newScore;
 }
