@@ -41,6 +41,7 @@ function addElementsClickEvent(imgElements) {
       circle[1].setAttribute('src', `/images/${randElement}.svg`);
       circle[1].setAttribute('class', `circle ${randElement}`);
 
+      updateResultText(element, randElement);
       updateScore(element, randElement);
     });
   });
@@ -88,4 +89,61 @@ function updateScore(elementUser, elementComputer) {
   const scoreText = score.querySelector('.value').textContent;
   const newScore = tempScore + parseInt(scoreText);
   score.querySelector('.value').textContent = newScore;
+}
+
+function updateResultText(elementUser, elementComputer) {
+  const currentWinLose = document.querySelector('.win-lose');
+  let winLoseText = 'You ';
+
+  switch(elementUser) {
+    case 'water': 
+      if (elementComputer == 'fire') {
+        winLoseText += 'Win';
+      } else if (elementComputer == 'earth') {
+        winLoseText += 'Lose';
+      } else {
+        winLoseText = 'Neutral';
+      };
+      break;
+    case 'fire':
+      if (elementComputer == 'metal') {
+        winLoseText += 'Win';
+      } else if (elementComputer == 'water') {
+        winLoseText += 'Lose';
+      } else {
+        winLoseText = 'Neutral';
+      };
+      break;
+    case 'metal':
+      if (elementComputer == 'wood') {
+        winLoseText += 'Win';
+      } else if (elementComputer == 'fire') {
+        winLoseText += 'Lose';
+      } else {
+        winLoseText = 'Neutral';
+      };;
+      break;
+    case 'wood':
+      if (elementComputer == 'earth') {
+        winLoseText += 'Win';
+      } else if (elementComputer == 'metal') {
+        winLoseText += 'Lose';
+      } else {
+        winLoseText = 'Neutral';
+      };
+      break;
+    case 'earth':
+      if (elementComputer == 'water') {
+        winLoseText += 'Win';
+      } else if (elementComputer == 'wood') {
+        winLoseText += 'Lose';
+      } else {
+        winLoseText = 'Neutral';
+      };
+      break;
+    default: 
+      break;
+  }
+
+  currentWinLose.textContent = winLoseText;
 }
