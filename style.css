@@ -73,23 +73,23 @@ header {
   border: var(--image-border-width) solid black;
 }
 
-#water {
+.water {
   border-color: aqua;
 }
 
-#fire {
+.fire {
   border-color: red;
 }
 
-#metal {
+.metal {
   border-color: gray;
 }
 
-#wood {
+.wood {
   border-color: green;
 }
 
-#earth {
+.earth {
   border-color: brown;
 }
 

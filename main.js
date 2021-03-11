@@ -1,12 +1,8 @@
 const elements = ['earth', 'fire', 'metal', 'water', 'wood'];
 
 const score = document.querySelector('.score');
-const water = document.querySelector('#water');
-const fire = document.querySelector('#fire');
-const metal = document.querySelector('#metal');
-const wood = document.querySelector('#wood');
-const earth = document.querySelector('#earth');
 const circleContainer = document.querySelector('.circle-container');
+const imgElements = document.querySelectorAll('.circle-container .circle');
 const resultContainer = document.querySelector('.result-container');
 const chosen = document.querySelector('.chosen');
 const winLose = document.querySelector('.win-lose');
@@ -29,55 +25,24 @@ buttonPlay.addEventListener('click', () => {
   circleContainer.style.display = 'flex';
 });
 
-water.addEventListener('click', (e) => {
-  const randElement = getRandomElement();
-  const circle = chosen.querySelectorAll('.circle');
+addElementsClickEvent(imgElements);
 
-  circleContainer.style.display = 'none';
-  resultContainer.style.display = 'flex';
-  circle[0].setAttribute('src', '/images/water.svg');
-  circle[1].setAttribute('src', `/images/${randElement}.svg`);
-});
+function addElementsClickEvent(imgElements) {
+  imgElements.forEach(imgElement => {
+    let element = imgElement.className.split(' ')[1];
+    imgElement.addEventListener('click', () => {
+      let randElement = getRandomElement();
+      const circle = chosen.querySelectorAll('.circle');
 
-fire.addEventListener('click', () => {
-  const randElement = getRandomElement();
-  const circle = chosen.querySelectorAll('.circle');
- 
-  circleContainer.style.display = 'none';
-  resultContainer.style.display = 'flex';
-  circle[0].setAttribute('src', '/images/fire.svg');
-  circle[1].setAttribute('src', `/images/${randElement}.svg`);
-});
-
-metal.addEventListener('click', () => {
-  const randElement = getRandomElement();
-  const circle = chosen.querySelectorAll('.circle');
- 
-  circleContainer.style.display = 'none';
-  resultContainer.style.display = 'flex';
-  circle[0].setAttribute('src', '/images/metal.svg');
-  circle[1].setAttribute('src', `/images/${randElement}.svg`);
-});
-
-wood.addEventListener('click', () => {
-  const randElement = getRandomElement();
-  const circle = chosen.querySelectorAll('.circle');
-
-  circleContainer.style.display = 'none';
-  resultContainer.style.display = 'flex';
-  circle[0].setAttribute('src', '/images/wood.svg');
-  circle[1].setAttribute('src', `/images/${randElement}.svg`);
-});
-
-earth.addEventListener('click', () => {
-  const randElement = getRandomElement();
-  const circle = chosen.querySelectorAll('.circle');
-  
-  circleContainer.style.display = 'none';
-  resultContainer.style.display = 'flex';
-  circle[0].setAttribute('src', '/images/earth.svg');
-  circle[1].setAttribute('src', `/images/${randElement}.svg`);
-});
+      circleContainer.style.display = 'none';
+      resultContainer.style.display = 'flex';
+      circle[0].setAttribute('src', `/images/${element}.svg`);
+      circle[0].setAttribute('class', `circle ${element}`);
+      circle[1].setAttribute('src', `/images/${randElement}.svg`);
+      circle[1].setAttribute('class', `circle ${randElement}`);
+    });
+  });
+}
 
 function getRandomElement() {
   const elementLength = elements.length;
