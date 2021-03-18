@@ -62,13 +62,31 @@ function positionElements() {
   const angleBetween = 360 / numElements;
   const radiusCircle = circleContainer.offsetWidth / 2;
   const radiusElement = imgElements[0].offsetWidth / 2;
+  const x = radiusCircle - radiusElement;
 
   for (let i = 0; i < numElements; i++) {
     const angle = startAngle + angleBetween * i;
     imgElements[i].style.position = 'absolute';
     imgElements[i].style.top = '50%';
     imgElements[i].style.left = '50%';
-    imgElements[i].style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateX(${radiusCircle - radiusElement}px) rotate(-${angle}deg)`;
+    imgElements[i].style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateX(${x}px) rotate(-${angle}deg)`;
+  }
+
+  // Lines
+  const line = document.querySelectorAll('.circle-container .line-segment');
+  const radian = angleBetween / 180 * Math.PI;
+  const lineTranslateX = x * Math.cos(radian / 2);
+  const lineWidth = 2 * x * Math.sin(radian / 2);
+  let rotate = startAngle + angleBetween / 2;
+  
+  for (let i = 0; i <= line.length; i++)
+  {
+    line[i].style.position = 'absolute';
+    line[i].style.width = `${lineWidth}px`;
+    line[i].style.top = '50%';
+    line[i].style.left = '50%';
+    rotate += angleBetween;
+    line[i].style.transform = `translate(-50%, -50%) rotate(${rotate}deg) translateX(${lineTranslateX}px) rotate(90deg)`;
   }
 }
 

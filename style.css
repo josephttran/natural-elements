@@ -69,6 +69,12 @@ header {
   justify-content: space-evenly;
 }
 
+.line-segment {
+  height: 10px;
+  width: 10px;
+  background-color: turquoise;
+}
+
 .circle {
   width: var(--image-size);
   height: var(--image-size);
