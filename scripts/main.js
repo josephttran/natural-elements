@@ -26,6 +26,7 @@ buttonPlay.addEventListener('click', () => {
 });
 
 addElementsClickEvent(imgElements);
+positionElements();
 
 function addElementsClickEvent(imgElements) {
   imgElements.forEach(imgElement => {
@@ -51,6 +52,24 @@ function getRandomElement() {
   const elementLength = elements.length;
   const rand = Math.floor(Math.random() * elementLength);
   return elements[rand];
+}
+
+function positionElements() {
+  const circleContainer = document.querySelector('.circle-container');
+  const imgElements = document.querySelectorAll('.circle-container .circle');
+  const numElements = imgElements.length;
+  const startAngle = 270;
+  const angleBetween = 360 / numElements;
+  const radiusCircle = circleContainer.offsetWidth / 2;
+  const radiusElement = imgElements[0].offsetWidth / 2;
+
+  for (let i = 0; i < numElements; i++) {
+    const angle = startAngle + angleBetween * i;
+    imgElements[i].style.position = 'absolute';
+    imgElements[i].style.top = '50%';
+    imgElements[i].style.left = '50%';
+    imgElements[i].style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateX(${radiusCircle - radiusElement}px) rotate(-${angle}deg)`;
+  }
 }
 
 function updateScore(elementUser, elementComputer) {
