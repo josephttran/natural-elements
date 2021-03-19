@@ -1,7 +1,7 @@
 const elements = ['earth', 'fire', 'metal', 'water', 'wood'];
 
 const score = document.querySelector('.score');
-const circleContainer = document.querySelector('.circle-container');
+const mainContainer = document.querySelector('.main-container');
 const imgElements = document.querySelectorAll('.circle-container .circle');
 const resultContainer = document.querySelector('.result-container');
 const chosen = document.querySelector('.chosen');
@@ -22,7 +22,7 @@ buttonInfoClose.addEventListener('click', () => {
 
 buttonPlay.addEventListener('click', () => {
   resultContainer.style.display = 'none';
-  circleContainer.style.display = 'flex';
+  mainContainer.style.display = 'flex';
 });
 
 addElementsClickEvent(imgElements);
@@ -35,7 +35,7 @@ function addElementsClickEvent(imgElements) {
       let element = imgElement.className.split(' ')[1];
       let randElement = getRandomElement();
 
-      circleContainer.style.display = 'none';
+      mainContainer.style.display = 'none';
       resultContainer.style.display = 'flex';
       circle[0].setAttribute('src', `/images/${element}.svg`);
       circle[0].setAttribute('class', `circle ${element}`);
