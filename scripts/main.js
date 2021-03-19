@@ -39,9 +39,9 @@ function addElementsClickEvent(imgElements) {
 
       mainContainer.style.display = 'none';
       resultContainer.style.display = 'flex';
-      circle[0].setAttribute('src', `images/${element}.svg`);
+      circle[0].setAttribute('src', `./images/${element}.svg`);
       circle[0].setAttribute('class', `circle ${element}`);
-      circle[1].setAttribute('src', `images/${randElement}.svg`);
+      circle[1].setAttribute('src', `./images/${randElement}.svg`);
       circle[1].setAttribute('class', `circle ${randElement}`);
 
       updateResultText(element, randElement);
