@@ -60,9 +60,12 @@ function positionElements() {
   const numElements = imgElements.length;
   const startAngle = 270;
   const angleBetween = 360 / numElements;
-  const radiusCircle = circleContainer.offsetWidth / 2;
-  const radiusElement = imgElements[0].offsetWidth / 2;
-  const x = radiusCircle - radiusElement;
+  const circleHeight = circleContainer.offsetHeight;
+  const circleWidth = circleContainer.offsetWidth;
+
+  const radiusCircle = circleHeight > circleWidth ? (circleWidth / 2) : (circleHeight / 2);
+  const widthElement = imgElements[0].offsetWidth / 2;
+  const x = radiusCircle - widthElement;
 
   for (let i = 0; i < numElements; i++) {
     const angle = startAngle + angleBetween * i;

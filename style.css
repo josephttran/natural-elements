@@ -7,7 +7,7 @@
   --body-padding: 4vw;
   --header-border-width: 1vw;
   --header-width: calc(100vw - var(--body-padding) * 2) - var(--header-border-width) * 2;
-  --image-size: calc(82vw / 5);
+  --image-size: 60px;
   --button-bg-color: dodgerblue;
   --button-color: white;
   --body-padding-lg: 10%;
@@ -62,11 +62,16 @@ header {
 }
 
 /* Center */
-.circle-container {
+.main-container {
   height: 100%;
   display: flex;
-  flex-direction: column;  
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-container {
+  height: 80%;
+  width: 80%;
 }
 
 .line-segment {
