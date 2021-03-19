@@ -1,32 +1,34 @@
 const elements = ['earth', 'fire', 'metal', 'water', 'wood'];
 
-const score = document.querySelector('.score');
 const mainContainer = document.querySelector('.main-container');
 const imgElements = document.querySelectorAll('.circle-container .circle');
 const resultContainer = document.querySelector('.result-container');
 const chosen = document.querySelector('.chosen');
-const winLose = document.querySelector('.win-lose');
-const buttonPlay = document.querySelector('.btn-play');
-const info = document.querySelector('.info');
-const buttonInfo = document.querySelector('.btn-info');
-const buttonInfoClose = document.querySelector('.btn-info-close');
 
-buttonInfo.addEventListener('click', () => {
-  console.log('hey');
-  info.style.display = 'flex';
-});
-
-buttonInfoClose.addEventListener('click', () => {
-  info.style.display = 'none';
-});
-
-buttonPlay.addEventListener('click', () => {
-  resultContainer.style.display = 'none';
-  mainContainer.style.display = 'flex';
-});
-
+addButtonClickEvent();
 addElementsClickEvent(imgElements);
 positionElements();
+
+function addButtonClickEvent() {
+  const info = document.querySelector('.info');
+  const buttonInfo = document.querySelector('.btn-info');
+  const buttonInfoClose = document.querySelector('.btn-info-close');
+  const buttonPlay = document.querySelector('.btn-play');
+
+  buttonInfo.addEventListener('click', () => {
+    console.log('hey');
+    info.style.display = 'flex';
+  });
+
+  buttonInfoClose.addEventListener('click', () => {
+    info.style.display = 'none';
+  });
+
+  buttonPlay.addEventListener('click', () => {
+    resultContainer.style.display = 'none';
+    mainContainer.style.display = 'flex';
+  });  
+}
 
 function addElementsClickEvent(imgElements) {
   imgElements.forEach(imgElement => {
@@ -37,9 +39,9 @@ function addElementsClickEvent(imgElements) {
 
       mainContainer.style.display = 'none';
       resultContainer.style.display = 'flex';
-      circle[0].setAttribute('src', `/images/${element}.svg`);
+      circle[0].setAttribute('src', `images/${element}.svg`);
       circle[0].setAttribute('class', `circle ${element}`);
-      circle[1].setAttribute('src', `/images/${randElement}.svg`);
+      circle[1].setAttribute('src', `images/${randElement}.svg`);
       circle[1].setAttribute('class', `circle ${randElement}`);
 
       updateResultText(element, randElement);
@@ -62,7 +64,6 @@ function positionElements() {
   const angleBetween = 360 / numElements;
   const circleHeight = circleContainer.offsetHeight;
   const circleWidth = circleContainer.offsetWidth;
-
   const radiusCircle = circleHeight > circleWidth ? (circleWidth / 2) : (circleHeight / 2);
   const widthElement = imgElements[0].offsetWidth / 2;
   const x = radiusCircle - widthElement;
@@ -94,6 +95,8 @@ function positionElements() {
 }
 
 function updateScore(elementUser, elementComputer) {
+  const score = document.querySelector('.score');
+  const scoreText = score.querySelector('.value').textContent;
   let tempScore = 0;
 
   switch(elementUser) {
@@ -126,7 +129,6 @@ function updateScore(elementUser, elementComputer) {
       return;
   }
 
-  const scoreText = score.querySelector('.value').textContent;
   const newScore = tempScore + parseInt(scoreText);
   score.querySelector('.value').textContent = newScore;
 }
